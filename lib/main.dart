@@ -1,9 +1,10 @@
+import 'package:expense_tracker/expense_card.dart';
 import 'package:flutter/material.dart';
 import 'package:expense_tracker/expenses.dart'; 
 
 void main() {
   runApp(
-    const MaterialApp(
-    home: Expenses()), ); 
+    MaterialApp(
+    home: Expenses(onRemoveExpense: (expense){},))); 
     
 }
