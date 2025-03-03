@@ -42,10 +42,34 @@ class _ExpensesState extends State<Expenses> {
     });
   }
 
-  
+  void _removeExpenseCard(expense_card expense) {
+    final index = cards.indexOf(expense);
+    setState(() {
+      cards.remove(expense);
+    });
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        duration: Duration(seconds: 3),
+        action: SnackBarAction(
+            label: 'Undo',
+            onPressed: () {
+              setState(() {
+                  cards.insert(index, expense);
+              });
+            }),
+        content: Text('Expense deleted!'),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
+    Widget mainContent =
+        const Center(child: Text('No expenses found. Start adding some!'));
+        if(cards.isNotEmpty){
+          mainContent = Expenses(onRemoveExpense: _removeExpenseCard);
+        }
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -76,12 +100,8 @@ class _ExpensesState extends State<Expenses> {
                 // Use a unique identifier from the expense card
                 key: ValueKey(cards[index].name),
                 onDismissed: (direction) {
-                  final removedExpense = cards[index];
-                  setState(() {
-                    widget.onRemoveExpense(cards[index]);
-                    cards.removeAt(index);
-                  });
-                  widget.onRemoveExpense(removedExpense);
+                final removedExpense = cards[index];
+                _removeExpenseCard(removedExpense);
                 },
                 child: Card(
                   child: Padding(
