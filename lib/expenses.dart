@@ -1,6 +1,8 @@
+import 'package:expense_tracker/chart.dart';
 import 'package:flutter/material.dart';
 import 'package:expense_tracker/expense_card.dart';
 import 'package:expense_tracker/add_new_expense.dart';
+import 'package:expense_tracker/chart.dart';
 
 class Expenses extends StatefulWidget {
   const Expenses({super.key, required this.onRemoveExpense});
@@ -139,7 +141,12 @@ class _ExpensesState extends State<Expenses> {
         ),
         backgroundColor: const Color.fromARGB(255, 219, 124, 8),
       ),
-     body:mainContent ,
+     body:Column(
+       children: [
+        Chart(expenses: cards), 
+        Expanded(child: mainContent) ,
+       ],
+     ) ,
     );
   }
 }

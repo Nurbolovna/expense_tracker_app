@@ -46,7 +46,6 @@ class _AddNewExpenseState extends State<AddNewExpense> {
     widget.onAddExpense(expense_card(name: titleController.text, price: enteredPrice, date: _selectedDate!, category: _selectedCategory));
     Navigator.pop(context);
   }
-
   
 
   void _datepicker() async {
