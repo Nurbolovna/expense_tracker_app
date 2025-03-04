@@ -65,32 +65,12 @@ class _ExpensesState extends State<Expenses> {
 
   @override
   Widget build(BuildContext context) {
-    Widget mainContent =
-        const Center(child: Text('No expenses found. Start adding some!'));
-        if(cards.isNotEmpty){
-          mainContent = Expenses(onRemoveExpense: _removeExpenseCard);
-        }
-    return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Text(
-              "Track your expenses",
-              style: TextStyle(color: Colors.white),
-            ),
-            ElevatedButton(
-              onPressed: _openAddOverlay,
-              child: const Icon(
-                Icons.add,
-                color: Color.fromARGB(255, 219, 124, 8),
-              ),
-            ),
-          ],
-        ),
-        backgroundColor: const Color.fromARGB(255, 219, 124, 8),
-      ),
-      body: Column(
+    Widget mainContent = Center(child: Text('No expenses found. Start adding some!'));
+    if(cards.isEmpty){
+      mainContent = Expenses(onRemoveExpense: _removeExpenseCard);
+    }
+    else{
+      mainContent = Column(
         children: [
           const Text("Chart"),
           Expanded(
@@ -137,7 +117,29 @@ class _ExpensesState extends State<Expenses> {
             ),
           ),
         ],
+      );
+        }
+    return Scaffold(
+      appBar: AppBar(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text(
+              "Track your expenses",
+              style: TextStyle(color: Colors.white),
+            ),
+            ElevatedButton(
+              onPressed: _openAddOverlay,
+              child: const Icon(
+                Icons.add,
+                color: Color.fromARGB(255, 219, 124, 8),
+              ),
+            ),
+          ],
+        ),
+        backgroundColor: const Color.fromARGB(255, 219, 124, 8),
       ),
+     body:mainContent ,
     );
   }
 }

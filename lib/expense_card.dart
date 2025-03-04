@@ -37,3 +37,7 @@ class expense_card{
   }
 
 }
+
+class ExpenseBucket{
+  
+}
