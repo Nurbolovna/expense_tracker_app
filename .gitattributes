@@ -1,0 +1,5 @@
+*.cpp linguist-vendored
+*.h   linguist-vendored
+
+# Explicitly mark Dart files as Dart
+*.dart linguist-language=Dart
