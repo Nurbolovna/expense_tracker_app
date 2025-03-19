@@ -2,7 +2,6 @@ import 'package:expense_tracker/chart.dart';
 import 'package:flutter/material.dart';
 import 'package:expense_tracker/expense_card.dart';
 import 'package:expense_tracker/add_new_expense.dart';
-import 'package:expense_tracker/chart.dart';
 
 class Expenses extends StatefulWidget {
   const Expenses({super.key, required this.onRemoveExpense});
